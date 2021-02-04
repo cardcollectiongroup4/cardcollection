@@ -7,7 +7,7 @@ const authentication = async (req, res, next) => {
         const decoded = decodedToken(token);
         const email = decoded.email;
         if (!email) throw 'Invalid token';
-        const user = User.findOne({
+        const user = await User.findOne({
             where: {
                 email
             }

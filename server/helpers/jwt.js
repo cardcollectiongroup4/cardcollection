@@ -6,8 +6,12 @@ const generateToken = payload => {
 }
 
 const decodedToken = (token) => {
-    let decoded = jwt.verify(token, 'secret');
-    return decoded;
+    try {
+        const decoded = jwt.verify(token, 'secret');
+        return decoded;
+    } catch (err) {
+        return false;
+    }
 }
 
 module.exports = { generateToken, decodedToken }
