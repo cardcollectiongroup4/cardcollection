@@ -17,6 +17,14 @@ const errorHandling = (err, req, res, next) => {
             response: false
         }
         res.status(401).json(msg);
+    } else if (err === 404) {
+        const msg = {
+            message: 'Data not found',
+            response: false
+        }
+        res.status(404).json(msg);
+    } else {
+        res.status(500).json(err);
     }
 }
 

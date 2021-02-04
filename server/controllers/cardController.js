@@ -45,6 +45,30 @@ class cardController {
         }
     }
 
+    static async getAllCards(req, res, next) {
+        try {
+            const token = req.headers.token;
+            const decoded = decodedToken(token);
+            const userId = decoded.id;
+            if (!userId) throw 'Invalid token';
+
+            const opt = {
+                where: {
+                    id: userId
+                },
+                include: Card
+            }
+
+            const user = await User.findOne(opt);
+            if (!user) throw 'Invalid token';
+            const cards = user.Cards;
+            if (cards.length === 0) throw 404;
+            res.status(200).json(cards);
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async saveCard(req, res, next) {
         try {
             const token = req.headers.token;
