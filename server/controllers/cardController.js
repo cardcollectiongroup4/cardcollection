@@ -96,6 +96,33 @@ class cardController {
             next(err);
         }
     }
+
+    static async deleteCard(req, res, next) {
+        try {
+            const token = req.headers.token;
+            const decoded = decodedToken(token);
+            const userId = decoded.id;
+            const cardId = req.body.cardId;
+            if (!userId) throw 'Invalid token';
+
+            const opt = {
+                where: {
+                    userId,
+                    cardId
+                }
+            }
+            const card = await UserCard.destroy(opt);
+            if (card === 0) throw 404;
+            const msg = {
+                message: 'Success deleted',
+                data: card
+            }
+
+            res.status(200).json(msg);
+        } catch (err) {
+            next(err);
+        }
+    }
 }
 
 module.exports = cardController
