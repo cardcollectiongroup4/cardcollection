@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.belongsToMany(models.Card, {through: models.UserCard, foreignKey: "userId" })
     }
   };
   User.init({
