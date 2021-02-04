@@ -5,4 +5,9 @@ const generateToken = payload => {
     return token;
 }
 
-module.exports = { generateToken }
+const decodedToken = (token) => {
+    let decoded = jwt.verify(token, 'secret');
+    return decoded;
+}
+
+module.exports = { generateToken, decodedToken }

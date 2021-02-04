@@ -11,6 +11,12 @@ const errorHandling = (err, req, res, next) => {
             response: false
         }
         res.status(401).json(msg);
+    } else if (err === 'Invalid token') {
+        const msg = {
+            message: err,
+            response: false
+        }
+        res.status(401).json(msg);
     }
 }
 
