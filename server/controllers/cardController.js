@@ -4,6 +4,17 @@ const { decodedToken } = require('../helpers/jwt');
 
 
 class cardController {
+  static quotes (req, res, next) {
+    axios.get('https://api.adviceslip.com/advice')
+    .then(result => {
+      res.status(200).json(result.data.slip.advice)
+      // res.status(200).json(response.data)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+  }
+
     static generate(req, res, next) {
         // let random = Math.floor(Math.random() * 3) + 1;
         let random = 2;
@@ -27,7 +38,7 @@ class cardController {
             axios.get("https://random.dog/woof.json")
                 .then(response => {
                     // console.log(response.data.url);
-                    console.log(response.data);
+                    console.log(response);
                     res.status(200).json(response.data.url);
                 })
                 .catch(err => {
