@@ -17,6 +17,15 @@ $(document).ready(function () {
         startPage();
     });
     $('#addRandomCard').on('click', e => {
+      e.preventDefault();
         addRandomCard();
     });
+    $('#show-quotes').on('click', e => {
+      e.preventDefault();
+      showQuotes();
+    })
+    $('#closeQuotes').on('click', e => {
+      e.preventDefault();
+      close();
+    })
 })

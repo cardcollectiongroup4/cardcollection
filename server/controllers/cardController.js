@@ -4,6 +4,26 @@ const { decodedToken } = require('../helpers/jwt');
 
 
 class cardController {
+  static quotes (req, res, next) {
+    axios({
+      url: "https://quotes21.p.rapidapi.com/quote",
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "bdecbcb4ecmsh59961cf6f572271p1675bcjsn8e969074c305",
+        "x-rapidapi-host": "quotes21.p.rapidapi.com",
+        "useQueryString": true
+      }
+    })
+    .then(res => {
+      let data = { quote: res.data.quote, author: res.data.author }
+      console.log(data);
+      res.status(200).json(data)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+  }
+
     static generate(req, res, next) {
         // let random = Math.floor(Math.random() * 3) + 1;
         let random = 2;
@@ -27,7 +47,7 @@ class cardController {
             axios.get("https://random.dog/woof.json")
                 .then(response => {
                     // console.log(response.data.url);
-                    console.log(response.data);
+                    console.log(response);
                     res.status(200).json(response.data.url);
                 })
                 .catch(err => {

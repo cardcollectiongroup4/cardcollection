@@ -8,3 +8,27 @@ body {
     height: 198px;
     padding: 1px;
 }
+
+#quotes {
+  z-index: 1;
+  position: absolute;
+  width: 400px;
+  height: 100px;
+  background-color: rgba(150, 150, 150, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+#quotes h1 {
+  margin: auto;
+  font-family: 'Cookie', cursive;
+  font-size: 50px;
+}
+
+#quotes a {
+  text-decoration: none;
+  color: rgb(168, 73, 73);
+  font-weight: 900;
+}

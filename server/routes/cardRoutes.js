@@ -8,4 +8,6 @@ router.get('/', cardController.getAllCards);
 router.delete('/', cardController.deleteCard);
 router.get('/generate', cardController.generate);
 
+router.get('/quotes', cardController.quotes)
+
 module.exports = router;

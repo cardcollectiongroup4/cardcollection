@@ -2,6 +2,7 @@ let base_url = 'http://localhost:3000/';
 
 function startPage() {
     if (!localStorage.getItem('token')) {
+        // $('#quotes').hide();
         $('#email').val('');
         $('#password').val('');
         $('#loginNav').show();
@@ -16,6 +17,8 @@ function startPage() {
             renderRegisterPage();
         })
     } else {
+        // $('#quotes').hide();
+        $('#cards').empty();
         $('#loginNav').hide();
         $('#registerNav').hide();
         $('#logoutNav').show();
@@ -106,7 +109,7 @@ function renderCardPage() {
             let html = '';
             data.forEach(e => {
                 let card = `<div class="card m-2" style="width: 150px; height: 200px;">
-                                <img src="${e.url}" class="card-img-top" alt="card">
+                                <a href="" id="show-quotes"><img src="${e.url}" class="card-img-top" alt="card" ></a>
                             </div>`;
                 html += card;
             });
@@ -115,6 +118,28 @@ function renderCardPage() {
         .fail(err => {
             console.log(err);
         });
+}
+
+function showQuotes() {
+  $.ajax({
+    url: base_url + 'card/quotes',
+    method: 'GET',
+    headers: {
+      token: localStorage.getItem('token')
+    }
+  })
+    .done(data => {
+      console.log(data);
+      $('#quotes').html(`<h1>"${data}"</h1>`)
+      $('#quotes').show();
+    })
+    .fail(err => {
+      console.log(err);
+    })
+}
+
+function close() {
+  $('#quotes').hide();
 }
 
 function addRandomCard() {
@@ -167,3 +192,4 @@ function signOut() {
         console.log('User signed out.');
     });
 }
+
