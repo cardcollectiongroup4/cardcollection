@@ -5,8 +5,8 @@ const { decodedToken } = require('../helpers/jwt');
 
 class cardController {
     static generate(req, res, next) {
-        let random = Math.floor(Math.random() * 3) + 1;
-        // let random = 1;
+        // let random = Math.floor(Math.random() * 3) + 1;
+        let random = 2;
         if (random === 1) {
             axios({
                 url: 'https://api.thecatapi.com/v1/images/search',
@@ -27,7 +27,8 @@ class cardController {
             axios.get("https://random.dog/woof.json")
                 .then(response => {
                     // console.log(response.data.url);
-                    res.status(200).json(response.data.url)
+                    console.log(response.data);
+                    res.status(200).json(response.data.url);
                 })
                 .catch(err => {
                     res.status(500).json(err)
