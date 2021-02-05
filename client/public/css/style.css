@@ -1,0 +1,10 @@
+body {
+    background-image: url('../assets/pattern.jpg');
+    background-size: cover;
+}
+
+.card img {
+    width: 148px;
+    height: 198px;
+    padding: 1px;
+}
