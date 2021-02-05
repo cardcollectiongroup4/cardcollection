@@ -5,22 +5,13 @@ const { decodedToken } = require('../helpers/jwt');
 
 class cardController {
   static quotes (req, res, next) {
-    axios({
-      url: "https://quotes21.p.rapidapi.com/quote",
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": "bdecbcb4ecmsh59961cf6f572271p1675bcjsn8e969074c305",
-        "x-rapidapi-host": "quotes21.p.rapidapi.com",
-        "useQueryString": true
-      }
-    })
-    .then(res => {
-      let data = { quote: res.data.quote, author: res.data.author }
-      console.log(data);
-      res.status(200).json(data)
+    axios.get('https://api.adviceslip.com/advice')
+    .then(result => {
+      res.status(200).json(result.data.slip.advice)
+      // res.status(200).json(response.data)
     })
     .catch(err => {
-      res.status(500).json(err)
+      res.json(err)
     })
   }
 

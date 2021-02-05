@@ -12,9 +12,9 @@ body {
 #quotes {
   z-index: 1;
   position: absolute;
-  width: 400px;
-  height: 100px;
-  background-color: rgba(150, 150, 150, 0.6);
+  width: 450px;
+  height: 150px;
+  background-color: rgba(150, 150, 150, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,13 +22,16 @@ body {
 }
 
 #quotes h1 {
+  text-align: center;
   margin: auto;
-  font-family: 'Cookie', cursive;
-  font-size: 50px;
+  font-family: 'Cookie', cursive; 
+  font-size: 30px;
 }
 
 #quotes a {
+  z-index: 2;
   text-decoration: none;
   color: rgb(168, 73, 73);
   font-weight: 900;
+  font-size: 100px;
 }

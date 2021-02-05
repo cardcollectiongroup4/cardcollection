@@ -2,7 +2,7 @@ let base_url = 'http://localhost:3000/';
 
 function startPage() {
     if (!localStorage.getItem('token')) {
-        // $('#quotes').hide();
+      $('#quotes').hide();
         $('#email').val('');
         $('#password').val('');
         $('#loginNav').show();
@@ -17,7 +17,7 @@ function startPage() {
             renderRegisterPage();
         })
     } else {
-        // $('#quotes').hide();
+        $('.show-quotes').empty();
         $('#cards').empty();
         $('#loginNav').hide();
         $('#registerNav').hide();
@@ -108,8 +108,8 @@ function renderCardPage() {
         .done(data => {
             let html = '';
             data.forEach(e => {
-                let card = `<div class="card m-2" style="width: 150px; height: 200px;">
-                                <a href="" id="show-quotes"><img src="${e.url}" class="card-img-top" alt="card" ></a>
+                let card = `<div class="card m-2 show-quotes" style="width: 150px; height: 200px;">
+                                <img src="${e.url}" class="card-img-top" alt="card" >
                             </div>`;
                 html += card;
             });
@@ -128,10 +128,9 @@ function showQuotes() {
       token: localStorage.getItem('token')
     }
   })
-    .done(data => {
-      console.log(data);
-      $('#quotes').html(`<h1>"${data}"</h1>`)
+  .done(data => {
       $('#quotes').show();
+      $('#quotes').html(`<h1>"${data}"</h1>`)
     })
     .fail(err => {
       console.log(err);

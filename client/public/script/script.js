@@ -1,5 +1,6 @@
 $(document).ready(function () {
     startPage();
+    // $('#quotes').hide();
     $('#loginSubmit').on('submit', e => {
         e.preventDefault();
         login();
@@ -20,12 +21,14 @@ $(document).ready(function () {
       e.preventDefault();
         addRandomCard();
     });
-    $('#show-quotes').on('click', e => {
-      e.preventDefault();
-      showQuotes();
-    })
-    $('#closeQuotes').on('click', e => {
+    $('#quotes').on('click', e => {
       e.preventDefault();
       close();
-    })
+    });
 })
+
+$(document).on('click', ".show-quotes", () => {
+  showQuotes();
+})
+
+// $(document).on('click', "")
